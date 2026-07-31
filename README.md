@@ -14,23 +14,31 @@ This project compares reinforcement-learning based traffic signal control strate
 
 ```text
 .
-├── README.md
-├── requirements.txt
-├── docs/
-│   └── minor_proj_ppt.pptx
-├── src/
-│   ├── baseline/
-│   │   └── traciFT.py
-│   ├── deep_q_learning/
-│   │   └── traciDQL.py
-│   └── q_learning/
-│       └── traciQL.py
-└── sumo/
-    ├── RL.add.xml
-    ├── RL.net.xml
-    ├── RL.netecfg
-    ├── RL.rou.xml
-    └── RL.sumocfg
+|-- README.md
+|-- requirements.txt
+|-- docs/
+|   |-- images/
+|   |   |-- fixed-timing-cumulative-reward.png
+|   |   |-- fixed-timing-queue-length.png
+|   |   |-- q-learning-architecture.png
+|   |   |-- rl-control-loop.png
+|   |   |-- rl-training-cumulative-reward.png
+|   |   |-- rl-training-queue-length.png
+|   |   `-- sumo-simulation.png
+|   `-- minor_proj_ppt.pptx
+|-- src/
+|   |-- baseline/
+|   |   `-- traciFT.py
+|   |-- deep_q_learning/
+|   |   `-- traciDQL.py
+|   `-- q_learning/
+|       `-- traciQL.py
+`-- sumo/
+    |-- RL.add.xml
+    |-- RL.net.xml
+    |-- RL.netecfg
+    |-- RL.rou.xml
+    `-- RL.sumocfg
 ```
 
 ## Requirements
@@ -96,6 +104,10 @@ The simulation files are stored in `sumo/`.
 
 The main controlled traffic light id is `Nod`, as defined in `RL.net.xml`.
 
+## Simulation Preview
+
+![SUMO traffic simulation](docs/images/sumo-simulation.png)
+
 ## Learning Setup
 
 The RL scripts use a simple traffic-control formulation:
@@ -105,6 +117,12 @@ The RL scripts use a simple traffic-control formulation:
 - The agent receives higher reward when queues are shorter.
 - Phase switching is constrained by a minimum green interval to avoid unstable signal behavior.
 
+### Control Flow
+
+![Q-learning architecture](docs/images/q-learning-architecture.png)
+
+![RL traffic signal control loop](docs/images/rl-control-loop.png)
+
 ## Output
 
 During simulation, the scripts print state, action, reward, cumulative reward, and learned Q-values. At the end, Matplotlib plots:
@@ -113,6 +131,20 @@ During simulation, the scripts print state, action, reward, cumulative reward, a
 - Total queue length over simulation steps.
 
 SUMO detector output files such as `e2_*.xml` are generated during runs and are intentionally ignored by Git.
+
+## Result Snapshots
+
+### Fixed-Time Baseline
+
+![Fixed timing cumulative reward](docs/images/fixed-timing-cumulative-reward.png)
+
+![Fixed timing queue length](docs/images/fixed-timing-queue-length.png)
+
+### RL Training
+
+![RL training cumulative reward](docs/images/rl-training-cumulative-reward.png)
+
+![RL training queue length](docs/images/rl-training-queue-length.png)
 
 ## Notes
 
